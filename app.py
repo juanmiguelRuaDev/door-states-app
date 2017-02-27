@@ -19,9 +19,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return '''<h1>Welcome door-states-app</h1></br>
-    This application will be allocated into a raspberryPi'''
-
-
+    This application must be allocated into a raspberryPi v3'''
 """
 DEVICES
 """

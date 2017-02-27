@@ -1,7 +1,8 @@
 door-states-app
 =======================
 
-This python application is
+This application aims to manage the state of two doors (entry and exit) independently.The implementation is based on
+(state pattern)[https://en.wikipedia.org/wiki/State_pattern]
 
 ## Requirements --dev
 
