@@ -37,19 +37,15 @@ class ExitInitialState(GenericState):
 
         elif action_type == "doors":
             if action == "open":
-                self.context.state = ExitBarrierOpenedState(self.context)
+                self.context.state = ExitDoorOpenedState(self.context)
             elif action == "lock":
                 self.context.door.lock()
             elif action == "unlock":
                 self.context.door.unlock()
 
 
-class ExitBarrierOpenedState(GenericState):
+class ExitDoorOpenedState(GenericState):
     """
-    State ID = 1 \n
-    State Name = "BARRIER_OPENED"\n
-    At this state, the barrier will be opened and the semaphore put in on
-
     output=\n
     * barrier : {opened:true, locked: xx}
     * antennaNFC: off
@@ -85,10 +81,6 @@ class ExitBarrierOpenedState(GenericState):
 
 class ExitEmergencyState(GenericState):
     """
-    State ID = 3
-    State Name = "EMERGENCY"
-    This status is the most important. This status indicates that we are in emergency status. The only way
-    to go to other status is receiving the emergency:off event.
     output=\n
     * barrier : {opened:true, locked: xx}
     * antennaNFC: off

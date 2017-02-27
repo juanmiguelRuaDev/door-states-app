@@ -32,14 +32,14 @@ class EntryInitialState(GenericState):
 
         elif action_type == "doors":
             if action == "open":
-                self.context.state = EntryBarrierOpenedState(self.context)
+                self.context.state = EntryDoorOpenedState(self.context)
             elif action == "lock":
                 self.context.door.lock()
             elif action == "unlock":
                 self.context.door.unlock()
 
 
-class EntryBarrierOpenedState(GenericState):
+class EntryDoorOpenedState(GenericState):
     """
     output=\n
     * barrier : {opened:true, locked: xxx}
@@ -74,17 +74,9 @@ class EntryBarrierOpenedState(GenericState):
 
 class EntryEmergencyState(GenericState):
     """
-    State ID = 3
-
-    State Name = "EMERGENCY"
-
-    This status is the most important. This status indicates that we are in emergency status. The only way
-    to go to other status is receiving the emergency:off event.
-
     output=\n
     * barrier : {opened:true, locked: xxx}
     * antennaNFC: off
-
     Destination states =\n
      * EntryInitialState
     """
@@ -94,7 +86,6 @@ class EntryEmergencyState(GenericState):
         self.__perform_state()
 
     def __perform_state(self):
-        self.context.antenna.stop_to_listen()
         self.context.door.lock()
         self.context.door.open()
 

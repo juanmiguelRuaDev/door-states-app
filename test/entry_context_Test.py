@@ -2,7 +2,7 @@ import os
 import unittest
 
 from src.core.contexts import EntryContext
-from src.core.states.entry import EntryInitialState, EntryEmergencyState, EntryBarrierOpenedState
+from src.core.states.entry import EntryInitialState, EntryEmergencyState, EntryDoorOpenedState
 from src.utils.common import Config
 
 
@@ -16,7 +16,7 @@ class EntryContextTestCase(unittest.TestCase):
     def test_changing_state(self):
         self.assertIsInstance(self.appContext.state, EntryInitialState)
         self.appContext.perform_action(action="open", action_type="doors")
-        self.assertIsInstance(self.appContext.state, EntryBarrierOpenedState)
+        self.assertIsInstance(self.appContext.state, EntryDoorOpenedState)
         self.appContext.perform_action(action="close", action_type="doors")
         self.assertIsInstance(self.appContext.state, EntryInitialState)
         self.appContext.perform_action(action="on", action_type="emergency")

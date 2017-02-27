@@ -2,7 +2,7 @@ import os
 import unittest
 
 from src.core.contexts import ExitContext
-from src.core.states.exit import ExitInitialState, ExitBarrierOpenedState, ExitEmergencyState
+from src.core.states.exit import ExitInitialState, ExitDoorOpenedState, ExitEmergencyState
 from src.utils.common import Config
 
 
@@ -16,7 +16,7 @@ class ExitContextTestCase(unittest.TestCase):
     def test_changing_state(self):
         self.assertIsInstance(self.appContext.state, ExitInitialState)
         self.appContext.perform_action(action="open", action_type="doors")
-        self.assertIsInstance(self.appContext.state, ExitBarrierOpenedState)
+        self.assertIsInstance(self.appContext.state, ExitDoorOpenedState)
         self.appContext.perform_action(action="close", action_type="doors")
         self.assertIsInstance(self.appContext.state, ExitInitialState)
         self.appContext.perform_action(action="on", action_type="emergency")
