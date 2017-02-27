@@ -8,7 +8,7 @@ from src.core.observer import Observable
 from src.core.asyncTasks import barrier_target
 
 
-class Barrier(GPIOOut, Observable):
+class Door(GPIOOut, Observable):
 
     def __init__(self, name, gpio_pin=0):
         GPIOOut.__init__(self, name, gpio_pin)
@@ -35,7 +35,7 @@ class Barrier(GPIOOut, Observable):
         self.hilo.join(1)
 
     def timeout_callback(self):
-        kwargs = {"action_type": "barriers", "action": "close", "barrier": self.name}
+        kwargs = {"action_type": "doors", "action": "close", "door_name": self.name}
         self.notify_observers(**kwargs)
 
     def close(self):
@@ -60,13 +60,13 @@ class Barrier(GPIOOut, Observable):
         return str(self.__dict__)
 
     @classmethod
-    def new_entry_barrier(cls, name):
+    def new_entry_door(cls, name):
         config = Config.instance()
-        gpio_pin = config['gpio.out.barrier.entry']['gpio_pin']
+        gpio_pin = config['gpio.out.door.entry']['gpio_pin']
         return cls(name, gpio_pin=int(gpio_pin))
 
     @classmethod
-    def new_exit_barrier(cls, name):
+    def new_exit_door(cls, name):
         config = Config.instance()
-        gpio_pin = config['gpio.out.barrier.exit']['gpio_pin']
+        gpio_pin = config['gpio.out.door.exit']['gpio_pin']
         return cls(name, gpio_pin=int(gpio_pin))

@@ -15,9 +15,9 @@ class ExitContextTestCase(unittest.TestCase):
 
     def test_changing_state(self):
         self.assertIsInstance(self.appContext.state, ExitInitialState)
-        self.appContext.perform_action(action="open", action_type="barriers")
+        self.appContext.perform_action(action="open", action_type="doors")
         self.assertIsInstance(self.appContext.state, ExitBarrierOpenedState)
-        self.appContext.perform_action(action="close", action_type="barriers")
+        self.appContext.perform_action(action="close", action_type="doors")
         self.assertIsInstance(self.appContext.state, ExitInitialState)
         self.appContext.perform_action(action="on", action_type="emergency")
         self.assertIsInstance(self.appContext.state, ExitEmergencyState)

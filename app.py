@@ -34,8 +34,8 @@ def action_on_entry_door(action_id):
     entry_context.perform_action(**kwargs)
     object_response = {
         "doorType": door_type,
-        "opened": entry_context.barrier.is_opened(),
-        "locked": entry_context.barrier.is_locked()
+        "opened": entry_context.door.is_opened(),
+        "locked": entry_context.door.is_locked()
     }
 
     return jsonify(object_response)
@@ -48,8 +48,8 @@ def action_on_exit_barrier(action_id):
     exit_context.perform_action(**kwargs)
     object_response = {
         "doorType": door_type,
-        "opened": exit_context.barrier.is_opened(),
-        "locked": exit_context.barrier.is_locked()
+        "opened": exit_context.door.is_opened(),
+        "locked": exit_context.door.is_locked()
     }
     return jsonify(object_response)
 
@@ -57,10 +57,10 @@ def action_on_exit_barrier(action_id):
 @app.route("/devices/doors/status", methods=['GET'])
 def get_doors_status():
     entry_door = {
-        "opened": entry_context.barrier.is_opened(), "locked": entry_context.barrier.is_locked()
+        "opened": entry_context.door.is_opened(), "locked": entry_context.door.is_locked()
     }
     exit_door = {
-        "opened": exit_context.barrier.is_opened(), "locked": exit_context.barrier.is_locked()
+        "opened": exit_context.door.is_opened(), "locked": exit_context.door.is_locked()
     }
     object_response = {"entry": entry_door, "exit": exit_door}
     return jsonify(object_response)

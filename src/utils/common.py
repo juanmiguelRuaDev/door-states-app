@@ -1,7 +1,7 @@
 import logging
 
 logging.basicConfig(format='%(levelname)s ::%(asctime)-15s %(filename)s  %(message)s')
-handler = logging.FileHandler('raspbarrier.log')
+handler = logging.FileHandler('door-states.log')
 handler.setLevel(logging.INFO)
 
 
@@ -58,5 +58,3 @@ class Config:
 
 class Constants:
     DATE_FORMAT = '%Y%m%d%H%M%S'
-    # from datetime import datetime
-    # datetime.strptime(date_value_str, Constants.DATE_FORMAT)
