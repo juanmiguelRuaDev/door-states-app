@@ -1,0 +1,10 @@
+-#!/bin/sh
+ssh -tt root@pgm-barrier-python.idiada.ct <<EOF
+ cd /root/barrier-client-rasp
+ git pull origin dev
+ source ../pgmenv/bin/activate
+ pip3 install -r requirement-ci.txt
+ killall python
+ python app.py &
+ exit
+EOF
