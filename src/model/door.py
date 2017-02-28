@@ -1,11 +1,11 @@
 """
-Here must be defined the appropriated classes to :Barrier concept
+Here must be defined the appropriated classes to :Door concept
 """
 import threading
 from src.core.raspberry import GPIOOut
 from src.utils.common import Config
 from src.core.observer import Observable
-from src.core.asyncTasks import barrier_target
+from src.core.asyncTasks import door_timeout_target
 
 
 class Door(GPIOOut, Observable):
@@ -29,7 +29,7 @@ class Door(GPIOOut, Observable):
         :return:
         """
         if not self.hilo or not self.hilo.is_alive():
-            self.hilo = threading.Thread(target=barrier_target, args=(self, self.timeout_callback))
+            self.hilo = threading.Thread(target=door_timeout_target, args=(self, self.timeout_callback))
             self.hilo.daemon = True
             self.hilo.start()
         self.hilo.join(1)
