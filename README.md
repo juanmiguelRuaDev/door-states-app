@@ -1,31 +1,42 @@
-door-states-app
+DOOR-STATES-APP
 =======================
 
-This application aims to manage the state of two doors (entry and exit) independently.The implementation is based on
-(state pattern)[https://en.wikipedia.org/wiki/State_pattern]
+This application aims to manage the state of two doors (entry and exit) independently.The implementation is based on [state pattern](https://en.wikipedia.org/wiki/State_pattern) where each state decides which will be the next state according to the input parameters
 
 ## Requirements --dev
 
 * OS: Linux, Windows
-
 * Python3, pip3, virtualenv
 
 
 ## Requirements --pro
 
 * OS: Raspbian JESSIE LITE
+* Python3, pip3, virtualenv
 
 
 ## install dependencies from scratch
 
-Once the virtualenv is running, from root folder just run ``` pip3 install -r requirement.txt```
-and all dependencies defined in __requirement.txt__ will be installed
+Once the virtualenv is running, from the root folder just run either ``` pip3 install -r requirement.txt``` or ``` pip3 install -r requirement_dev.txt``` in development environment.
+
+
+## Run the application
+
+Since the application root folder, just run 
+```
+python3 app.py
+
+```
+
+
+
+
 
 
 ## License
 The MIT License (MIT)
 
-Copyright (c) 2016 Victor Igor
+Copyright (c) 2016 Juan Miguel Rúa
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
